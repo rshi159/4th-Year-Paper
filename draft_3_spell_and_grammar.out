@@ -1,0 +1,49 @@
+\BOOKMARK [1][-]{section.1}{Acknowledgements}{}% 1
+\BOOKMARK [1][-]{section.2}{Abstract}{}% 2
+\BOOKMARK [1][-]{section.3}{Introduction }{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Purpose}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Problem Description}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Definition and Notations}{section.3}% 6
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Joint Types}{subsection.3.3}% 7
+\BOOKMARK [3][-]{subsubsection.3.3.2}{Task and Configuration Space}{subsection.3.3}% 8
+\BOOKMARK [2][-]{subsection.3.4}{Robot Description}{section.3}% 9
+\BOOKMARK [3][-]{subsubsection.3.4.1}{Base}{subsection.3.4}% 10
+\BOOKMARK [3][-]{subsubsection.3.4.2}{Body and Head}{subsection.3.4}% 11
+\BOOKMARK [3][-]{subsubsection.3.4.3}{Arm and Hand}{subsection.3.4}% 12
+\BOOKMARK [3][-]{subsubsection.3.4.4}{Development}{subsection.3.4}% 13
+\BOOKMARK [1][-]{section.4}{Planning Algorithms}{}% 14
+\BOOKMARK [2][-]{subsection.4.1}{Overview}{section.4}% 15
+\BOOKMARK [2][-]{subsection.4.2}{Sampling-Based Planning}{section.4}% 16
+\BOOKMARK [3][-]{subsubsection.4.2.1}{PRM}{subsection.4.2}% 17
+\BOOKMARK [3][-]{subsubsection.4.2.2}{Vanilla RRT}{subsection.4.2}% 18
+\BOOKMARK [3][-]{subsubsection.4.2.3}{Bidirectional RRT Variants}{subsection.4.2}% 19
+\BOOKMARK [3][-]{subsubsection.4.2.4}{CBiRRT}{subsection.4.2}% 20
+\BOOKMARK [3][-]{subsubsection.4.2.5}{CBiRRT2}{subsection.4.2}% 21
+\BOOKMARK [3][-]{subsubsection.4.2.6}{HSR CBiRRT2 Variant}{subsection.4.2}% 22
+\BOOKMARK [3][-]{subsubsection.4.2.7}{Commentary}{subsection.4.2}% 23
+\BOOKMARK [2][-]{subsection.4.3}{Planning in Time-Configuration Space for Efficient Pick-and-Place in Non-Static Environments with Temporal Constraints}{section.4}% 24
+\BOOKMARK [3][-]{subsubsection.4.3.1}{Description and Overview of the Method}{subsection.4.3}% 25
+\BOOKMARK [3][-]{subsubsection.4.3.2}{Time-Configuration Space RRT-Connect}{subsection.4.3}% 26
+\BOOKMARK [3][-]{subsubsection.4.3.3}{Optimization-Based Planning}{subsection.4.3}% 27
+\BOOKMARK [3][-]{subsubsection.4.3.4}{Approximate Inference Control}{subsection.4.3}% 28
+\BOOKMARK [3][-]{subsubsection.4.3.5}{Commentary}{subsection.4.3}% 29
+\BOOKMARK [1][-]{section.5}{Method/Approach}{}% 30
+\BOOKMARK [2][-]{subsection.5.1}{Overview}{section.5}% 31
+\BOOKMARK [2][-]{subsection.5.2}{Scenario Setup}{section.5}% 32
+\BOOKMARK [2][-]{subsection.5.3}{Constraints On Grasping}{section.5}% 33
+\BOOKMARK [2][-]{subsection.5.4}{EXOTica}{section.5}% 34
+\BOOKMARK [3][-]{subsubsection.5.4.1}{Taskmaps}{subsection.5.4}% 35
+\BOOKMARK [3][-]{subsubsection.5.4.2}{Commentary on Task Map Weights}{subsection.5.4}% 36
+\BOOKMARK [2][-]{subsection.5.5}{HSR Controller}{section.5}% 37
+\BOOKMARK [2][-]{subsection.5.6}{Procedure}{section.5}% 38
+\BOOKMARK [3][-]{subsubsection.5.6.1}{Hardware and Simulation Specifications}{subsection.5.6}% 39
+\BOOKMARK [3][-]{subsubsection.5.6.2}{Grasping Phase}{subsection.5.6}% 40
+\BOOKMARK [3][-]{subsubsection.5.6.3}{Object Detection}{subsection.5.6}% 41
+\BOOKMARK [1][-]{section.6}{Results and Discussion}{}% 42
+\BOOKMARK [2][-]{subsection.6.1}{Trajectory Analysis}{section.6}% 43
+\BOOKMARK [2][-]{subsection.6.2}{Analysis of Plots}{section.6}% 44
+\BOOKMARK [3][-]{subsubsection.6.2.1}{Joint Positions}{subsection.6.2}% 45
+\BOOKMARK [3][-]{subsubsection.6.2.2}{Joint Velocities}{subsection.6.2}% 46
+\BOOKMARK [3][-]{subsubsection.6.2.3}{Joint Acceleration}{subsection.6.2}% 47
+\BOOKMARK [1][-]{section.7}{Conclusion}{}% 48
+\BOOKMARK [1][-]{section.8}{Bibliography}{}% 49

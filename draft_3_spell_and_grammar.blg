@@ -1,0 +1,54 @@
+This is BibTeX, Version 0.99d (TeX Live 2018)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: draft_3_spell_and_grammar.aux
+The style file: ieeetr.bst
+Database file #1: references.bib
+Warning--empty author in noauthor_robocuphome_2020
+Warning--empty journal in noauthor_robocuphome_2020
+Warning--empty author and editor in noauthor_hsrb_manual_nodate
+Warning--empty year in noauthor_hsrb_manual_nodate
+Warning--empty institution in lavalle_rapidly-exploring_1998
+Warning--empty journal in minka_expectation_nodate
+Warning--empty year in minka_expectation_nodate
+You've used 21 entries,
+            1876 wiz_defined-function locations,
+            595 strings with 7762 characters,
+and the built_in function-call counts, 5687 in all, are:
+= -- 542
+> -- 208
+< -- 0
++ -- 79
+- -- 58
+* -- 419
+:= -- 765
+add.period$ -- 25
+call.type$ -- 21
+change.case$ -- 20
+chr.to.int$ -- 0
+cite$ -- 28
+duplicate$ -- 293
+empty$ -- 583
+format.name$ -- 58
+if$ -- 1389
+int.to.chr$ -- 0
+int.to.str$ -- 21
+missing$ -- 17
+newline$ -- 72
+num.names$ -- 20
+pop$ -- 105
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 206
+stack$ -- 0
+substring$ -- 365
+swap$ -- 106
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 7
+while$ -- 55
+width$ -- 23
+write$ -- 201
+(There were 7 warnings)
