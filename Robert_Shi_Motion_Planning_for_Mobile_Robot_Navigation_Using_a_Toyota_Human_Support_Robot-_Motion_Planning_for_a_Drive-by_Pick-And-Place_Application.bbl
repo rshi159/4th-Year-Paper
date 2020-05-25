@@ -1,0 +1,123 @@
+\begin{thebibliography}{10}
+
+\bibitem{noauthor_robocuphome_2020}
+``{RoboCup}@{Home} {Rules} and {Regulations},'' p.~72, 2020.
+
+\bibitem{lavalle_planning_2006}
+S.~M. LaValle, {\em Planning {Algorithms}}.
+\newblock Cambridge: Cambridge University Press, 2006.
+
+\bibitem{noauthor_hsrb_manual_nodate}
+{\em {HSRB}\_Manual}.
+\newblock Toyota Motor Corporation.
+
+\bibitem{wada_caster_2000}
+M.~Wada, A.~Takagi, and S.~Mori, ``Caster drive mechanisms for holonomic and
+  omnidirectional mobile platforms with no over constraint,'' in {\em
+  Proceedings 2000 {ICRA}. {Millennium} {Conference}. {IEEE} {International}
+  {Conference} on {Robotics} and {Automation}. {Symposia} {Proceedings} ({Cat}.
+  {No}.{00CH37065})}, vol.~2, (San Francisco, CA, USA), pp.~1531--1538, IEEE,
+  2000.
+
+\bibitem{newman_c18_2017}
+P.~Newman, ``C18 — {Mobile} {Robotics},'' Oct. 2017.
+
+\bibitem{quigley_ros_2009}
+M.~Quigley, K.~Conley, B.~Gerkey, J.~Faust, T.~Foote, J.~Leibs, R.~Wheeler, and
+  A.~Ng, ``{ROS}: an open-source {Robot} {Operating} {System},'' 2009.
+
+\bibitem{kaiser_validation_2015}
+P.~Kaiser, M.~Grotz, E.~E. Aksoy, M.~Do, N.~Vahrenkamp, and T.~Asfour,
+  ``Validation of whole-body loco-manipulation affordances for pushability and
+  liftability,'' in {\em 2015 {IEEE}-{RAS} 15th {International} {Conference} on
+  {Humanoid} {Robots} ({Humanoids})}, (Seoul, South Korea), pp.~920--927, IEEE,
+  Nov. 2015.
+
+\bibitem{lavalle_rapidly-exploring_1998}
+S.~M. Lavalle, ``Rapidly-{Exploring} {Random} {Trees}: {A} {New} {Tool} for
+  {Path} {Planning},'' tech. rep., 1998.
+
+\bibitem{kavraki_probabilistic_1996}
+L.~Kavraki, P.~Svestka, J.-C. Latombe, and M.~Overmars, ``Probabilistic
+  roadmaps for path planning in high-dimensional configuration spaces,'' {\em
+  IEEE Transactions on Robotics and Automation}, vol.~12, pp.~566--580, Aug.
+  1996.
+\newblock Conference Name: IEEE Transactions on Robotics and Automation.
+
+\bibitem{gammell_c18_nodate}
+J.~Gammell, ``C18 {Lecture} {Slides}.''
+
+\bibitem{kuffner_rrt-connect_2000}
+J.~Kuffner and S.~LaValle, ``{RRT}-connect: {An} efficient approach to
+  single-query path planning,'' in {\em Proceedings 2000 {ICRA}. {Millennium}
+  {Conference}. {IEEE} {International} {Conference} on {Robotics} and
+  {Automation}. {Symposia} {Proceedings} ({Cat}. {No}.{00CH37065})}, vol.~2,
+  pp.~995--1001 vol.2, Apr. 2000.
+\newblock ISSN: 1050-4729.
+
+\bibitem{yang_planning_2018}
+Y.~Yang, W.~Merkt, V.~Ivan, and S.~Vijayakumar, ``Planning in
+  {Time}-{Configuration} {Space} for {Efficient} {Pick}-and-{Place} in
+  {Non}-{Static} {Environments} with {Temporal} {Constraints},'' in {\em 2018
+  {IEEE}-{RAS} 18th {International} {Conference} on {Humanoid} {Robots}
+  ({Humanoids})}, pp.~1--9, Nov. 2018.
+\newblock ISSN: 2164-0580.
+
+\bibitem{berenson_manipulation_2009}
+D.~Berenson, S.~S. Srinivasa, D.~Ferguson, and J.~J. Kuffner, ``Manipulation
+  planning on constraint manifolds,'' in {\em 2009 {IEEE} {International}
+  {Conference} on {Robotics} and {Automation}}, (Kobe), pp.~625--632, IEEE, May
+  2009.
+
+\bibitem{berenson_pose-constrained_2009}
+D.~Berenson, J.~Chestnutt, S.~S. Srinivasa, J.~J. Kuffner, and S.~Kagami,
+  ``Pose-constrained whole-body planning using {Task} {Space} {Region}
+  {Chains},'' in {\em 2009 9th {IEEE}-{RAS} {International} {Conference} on
+  {Humanoid} {Robots}}, (Paris, France), pp.~181--187, IEEE, Dec. 2009.
+
+\bibitem{yamamoto_development_2019}
+T.~Yamamoto, K.~Terada, A.~Ochiai, F.~Saito, Y.~Asahara, and K.~Murase,
+  ``Development of {Human} {Support} {Robot} as the research platform of a
+  domestic mobile manipulator,'' {\em ROBOMECH Journal}, vol.~6, p.~4, Dec.
+  2019.
+
+\bibitem{toussaint_robot_2009}
+M.~Toussaint, ``Robot trajectory optimization using approximate inference,'' in
+  {\em Proceedings of the 26th {Annual} {International} {Conference} on
+  {Machine} {Learning} - {ICML} '09}, (Montreal, Quebec, Canada), pp.~1--8, ACM
+  Press, 2009.
+
+\bibitem{todorov_generalized_2005}
+E.~Todorov and {Weiwei Li}, ``A generalized iterative {LQG} method for
+  locally-optimal feedback control of constrained nonlinear stochastic
+  systems,'' in {\em Proceedings of the 2005, {American} {Control}
+  {Conference}, 2005.}, (Portland, OR, USA), pp.~300--306, IEEE, 2005.
+
+\bibitem{minka_expectation_nodate}
+T.~P. Minka, ``Expectation {Propagation} for {Approximate} {Bayesian}
+  {Inference},'' p.~8.
+
+\bibitem{koubaa_exotica_2019}
+V.~Ivan, Y.~Yang, W.~Merkt, M.~P. Camilleri, and S.~Vijayakumar, ``{EXOTica}:
+  {An} {Extensible} {Optimization} {Toolset} for {Prototyping} and
+  {Benchmarking} {Motion} {Planning} and {Control},'' in {\em Robot {Operating}
+  {System} ({ROS})} (A.~Koubaa, ed.), vol.~778, pp.~211--240, Cham: Springer
+  International Publishing, 2019.
+\newblock Series Title: Studies in Computational Intelligence.
+
+\bibitem{koenig_design_2004}
+N.~Koenig and A.~Howard, ``Design and use paradigms for {Gazebo}, an
+  open-source multi-robot simulator,'' in {\em 2004 {IEEE}/{RSJ}
+  {International} {Conference} on {Intelligent} {Robots} and {Systems} ({IROS})
+  ({IEEE} {Cat}. {No}.{04CH37566})}, vol.~3, pp.~2149--2154 vol.3, Sept. 2004.
+
+\bibitem{wang_apriltag_2016}
+J.~Wang and E.~Olson, ``{AprilTag} 2: {Efficient} and robust fiducial
+  detection,'' in {\em 2016 {IEEE}/{RSJ} {International} {Conference} on
+  {Intelligent} {Robots} and {Systems} ({IROS})}, (Daejeon, South Korea),
+  pp.~4193--4198, IEEE, Oct. 2016.
+
+\bibitem{noauthor_kinematics_nodate}
+``Kinematics and {Dynamics} {Library} ({KDL}).''
+
+\end{thebibliography}

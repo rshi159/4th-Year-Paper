@@ -8,6 +8,7 @@
 \usepackage{amsmath}
 \usepackage{hyperref}
 \usepackage{cleveref}
+\usepackage{pdfpages}
 
 \bibliographystyle{ieeetr}    
 \graphicspath{ {./images/} }
@@ -414,9 +415,9 @@
 
             \begin{figure}
                 \centering
-                \subfigure[iLQG Algorithm \cite{todorov_generalized_2005}]{
                 \includegraphics[width=0.45\linewidth]{images/algorithms/ilqg.png}
-                \label{fig:ilqg}}
+                \label{fig:ilqg}
+                \caption{iLQG Algorithm \protect\cite{todorov_generalized_2005}}
             \end{figure}
 
             \par iLQG optimizes a control sequence by linearizing the system dynamics around each system state and control input in the sequence. This local linearization casts the non-linear system dynamics problem into a sequence of LQG problems, where each iteration steps through the sequence to further optimize the entire trajectory.The iLQG algorithm utilizes a forward-backward algorithm. iLQG computes a trajectory with a forward pass by applying a sequence of control inputs in an open-loop manner. A backward pass recursively calculates the cost-to-go function, much like in the Bellman equation, except that the cost-to-go function is minimized instead of maximizing a value function. Each iteration of the backward step computes a new $a(x)$, which is applied open-loop in the subsequent forward pass. Iterating iLQG until convergence results in a locally optimal trajectory and a linear-quadratic regulator that can handle small perturbations around the selected trajectory.\cite{todorov_generalized_2005} iLQG computed updates to the entire trajectory with each pass
@@ -424,9 +425,9 @@
 
             \begin{figure}
                 \centering
-                \subfigure[AICO Algorithm \cite{toussaint_robot_2009}]{
                 \includegraphics[width=0.45\linewidth]{images/algorithms/aico.png}
-                \label{fig:aico}}
+                \caption{AICO Algorithm \protect\cite{toussaint_robot_2009}}
+                \label{fig:aico}
             \end{figure}
 
             \par On the other hand, AICO takes a probabilistic inference approach by conditioning a trajectory on constraint conditions. Toussaint demonstrates that for the LQG case, the maximum likelihood trajectory approaches the solution found by cost minimization. AICO uses message-passing to propagate beliefs. In belief propagation, a selected node receives messages from parent nodes, who receive messages from their parent nodes, and so on. This propagation of information updates the selected node with information from the entire network. Then, the selected node distributes messages to its parent nodes, which redistributes information throughout the network. \cite{minka_expectation_nodate}
@@ -443,20 +444,33 @@
             Yang, Merkt, et.al. explain that the solver gets easily trapped in local minima in static environments under collision constraints. They elect to solve grasping trajectories until a collision-free trajectory is found. \cite{yang_planning_2018} implemented their pick-and-place framework in the Extensible Optimization Toolset (EXOTica) framework \cite{koubaa_exotica_2019}. EXOTica is "a framework of software tools designed for development and evaluation of motion synthesis algorithms within ROS" and includes an implementation of motion solvers such as AICO as a benchmark for new motion planning algorithms.\cite{koubaa_exotica_2019} This project uses EXOTica to plan the grasping phase of the drive-by pick-and-place motion. Further details on the EXOTica framework are provided below.
     \newpage
     \section{Method/Approach}
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.95\linewidth]{illustrator/segments.png}
+            \label{fig:segments}
+            \caption{Planning Overview}
+        \end{figure}
         \subsection{Overview}
-            This project closely follows the method proposed in \cite{yang_planning_2018}. One significant difference is that the time-configuration planning method is designed for picking and placing a moving object. A drive-by pick-and-place scenario also has the target object moving relative to the robot, but in the drive-by case, the HSR must approximately follow a predefined trajectory which complicates the end-effector tracking of the object during the grasping phase as shown in \cref{fig:driveby}. This issue is largely due to the limited reachability of the HSR arm. To address this issue, the grasping phase is allotted an extended duration of time to encompass the HSR's approach and grasping of the object. The new, extended grasping phase plans the sub-reaching, sub-grasping, and sub-leaving steps, which are similar to the reaching, grasping, and placing steps in \cite{yang_planning_2018}.[Insert figure to visualize the new method, with sub-divided grasping phase] reaching=> extended grasping phase(sub-reaching=> sub-grasping=> sub-leaving)=>placing
+            This project closely follows the method proposed in \cite{yang_planning_2018}. One significant difference is that the time-configuration planning method is designed for picking and placing a moving object. A drive-by pick-and-place scenario also has the target object moving relative to the robot, but in the drive-by case, the HSR must approximately follow a predefined trajectory which complicates the end-effector tracking of the object during the grasping phase as shown in \cref{fig:driveby}. This issue is largely due to the limited reachability of the HSR arm. To address this issue, the grasping phase is allotted an extended duration of time to encompass the HSR's approach and grasping of the object as depicted in \cref{fig:segments}. The new, extended grasping phase plans the sub-reaching, sub-grasping, and sub-leaving steps as shown in \cref{fig:segments}.
             % The HSR CBiRRT2 variant is used to reach the start of the extended grasping phase and leave from the end pose of the extended grasping phase to place the object. 
 
-            \par This method differs from the Time-Configuration RRT-Connect in that the grasping phase is extended to incorporate a sub-reaching and a sub-leaving stage while maintaining the reaching and placing phases. 
+            \par This method differs from the Time-Configuration RRT-Connect in that the grasping phase is extended to incorporate a sub-reaching, sub-grasping, and a sub-leaving stage while maintaining the reaching and placing phases. The reaching segment brings the HSR to the start pose for the grasping segment and the placing segment starts from the end pose of the grasping segment, like in \cite{yang_planning_2018}. At the start of the grasping segment, the sub-reaching phase brings the HSR gripper end-effector to the soda can. In the sub-grasping phase, the gripper remains around the soda can as the HSR base moves, for long enough to close the gripper aroiund the soda can. In the sub-leaving phase, the HSR drives to the start pose of the placing segment.
 
-            \par The HSR CBiRRT2 variant is used to reach the start of the extended grasping phase and leave from the end pose of the extended grasping phase to place the object. This is largely for convenience. The HSR RRT planning algorithm is built-in on the robot and the world is static for this project. The time-varying component of the problem is the position of the target object, a soda can in this instance, relative to the HSR as it drives-by, following a trajectory. 
+            \par The HSR CBiRRT2 variant is used to reach the start of the  grasping segemnt and leave from the end pose of the extended grasping segment to place the object. This is largely for convenience. The HSR CBiRRT2 planning algorithm is built-in on the robot and the world is static for this project. The time-varying component of the problem is the position of the target object, a soda can in this instance, relative to the HSR as it drives-by, following a trajectory. 
             % It is assumed that computing a collision-free drive-by base trajectory for the HSR is trivial, using Time-Configuration space planning methods detailed in [***]. Therefore, the reaching and placing motions around dynamic obstacles are already accounted for in the given base trajectory and can be replaced by HSR motion planning for demonstration purposes. 
             The extended grasping step can be planned using AICO and activating specific constraints during the sub-grasping phase time window.
         
-            The HSR CBiRRT2 motion planning algorithm is already implemented on the HSR and TOPP allows for control over the timing of planned trajectories. This covers the reaching and placing steps of the motion plan. The key step for this project is the extended grasping phase.
+            The HSR CBiRRT2 motion planning algorithm is already implemented on the HSR and TOPP allows for control over the timing of planned trajectories. This covers the reaching and placing steps of the motion plan. The key step for this project is planning a whole-body trajectory for the extended grasping segment, which is covered in the remainder of this paper.
+        
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.95\linewidth]{2020.05.19/setup.png}
+            \label{fig:problem_setup}
+            \caption{Testing environment for the grasping segment in Gazebo simulation}
+        \end{figure}
 
         \subsection{Scenario Setup}
-            To simplify the problem described in [section reference], a bare-bones world containing only an Ikea Nyboda Table and a soda can was created in Gazebo. Gazebo is an open-source robotics simulator commonly used for ROS-based robot simulations. The objects in the simplified scenario were chosen for convenience. The Ikea Nyboda Table was chosen as it was the model of table present in the testing space for the HSR. A soda can was chosen as the target pick-and-place object since it is a household item and a representative task for a service robot. Further, the radius of the soda can is larger than items expected to be used in real-world testing, which produces a scenario with a smaller margin for error in terms of end-effector positioning. <insert figure>. In this example, the HSR follows a given base trajectory that is parallel to the table and attempts to grasp the bottle.
+            To simplify the problem described in Section 5.1, a bare-bones world containing only an Ikea Nyboda Table and a soda can was created in Gazebo. Gazebo is an open-source robotics simulator commonly used for ROS-based robot simulations.\cite{koenig_design_2004} The objects in the simplified scenario were chosen for convenience. The Ikea Nyboda Table was chosen as it was the model of table present in the testing space for the HSR. A soda can was chosen as the target pick-and-place object since it is a household item and a representative task for a service robot. Further, the radius of the soda can is larger than items expected to be used in real-world testing, which produces a scenario with a smaller margin for error in terms of end-effector positioning. <insert figure>. In this example, the HSR follows a given base trajectory that is parallel to the table and attempts to grasp the bottle.
             
         \subsection{Constraints On Grasping}
             The grasping method in \cite{yang_planning_2018} identifies valid grasping trajectories by generating new trajectories using AICO until a collision-free trajectory is found. In those cases, the grasping phases have a relatively short time frame. For instance, the HSR can close its gripper within 0.4 seconds, giving a maximum grasping duration of 0.4 seconds. In the case of the extended grasping phase for the drive-by problem, the duration for the HSR is around 15 seconds. Although computation time depends on the number of waypoints in a trajectory, the distances traversed are much larger in the case of the drive-by problem. This means that checking for collisions after computing trajectories is no longer efficient since it is highly likely that the arm or end effector would collide with the table in this test scenario. To accommodate for this issue, constraints are introduced to reduce the likelihood of colliding with the table. As mentioned above, EXOTica is used to plan this grasping phase.
@@ -470,6 +484,13 @@
 
             \par The planning problem defines the type of problem being solved and the tasks to be completed. The problem definition used for the grasping phase is an Unconstrained Time-Indexed Problem since it defines a 'defines a problem minimizing the quadratic cost over a trajectory using a kinematic model of the system', which can be solved by AICO. The planning problem uses task maps, which are functions that map the configuration space to task space. EXOTica includes several common taskmaps that are utilized in this project to define constraints on the HSR during the grasping phase.
             
+            \begin{figure}[ht]
+                \centering
+                \includegraphics[]{illustrator/taskmap.png}
+                \label{fig:taskmap}
+                \caption{A graphical depiction of the timing of taskmap activation. Elongated rounded rectangles denote taskmaps that are active for a duration of time. Bars represent task maps that push the HSR to achieve desired values at a point in time. Associated costs for the taskmaps are listed in parenthesis. Greater costs correspond to higher priority.}
+            \end{figure}
+
             \subsubsection{Taskmaps}
                 Task maps are active at various points of the extended grasping phase depending on the sub-phase. A task map is considered active when its associated cost is greater than zero. Throughout the entire extended grasping phase, 2 task maps are constantly active:
                 \begin{itemize}
@@ -477,37 +498,42 @@
 
                     \item A Base Position task map penalizes deviations from the drive-by base trajectory specified in the planning scene.
                 \end{itemize}
-                3 task maps are activated during the sub-grasping phase. Despite the notion that the task maps are active at a certain time, AICO attempts to optimize the trajectory such that the constraint imposed by the task is satisfied in the window of time that the task map is active.
+
+                4 task maps are activated during the sub-grasping phase. Despite the notion that the task maps are active at a certain time, AICO attempts to optimize the trajectory such that the constraint imposed by the task is satisfied in the window of time that the task map is active.
                 \begin{itemize}
                     \item An End Effector Position Task map causes the HSR to reach the location of the target soda can object. This task map is activated in the window of the sub-grasping phase. The sub-grasping window is defined by 
                     \[{grasp\ window} = t_{grasp\ start}: t_{grasp\ start}+grasp\  duration\] 
                     where \(t_{grasp\ start}\) is the point in time where the HSR is sufficiently close to reaching the soda can and \({grasp\ duration}\) is the maximum time necessary to close the HSR gripper, which is 0.4 seconds.
 
-                    \item An End Effector Axis Alignment task map aligns the HSR gripper with the axis of the cylindrical soda can so the gripper stays around the soda can while the fingers of the gripper close. This Axis Alignment task begins at \(t_{grasp\ start}\) and remains active to keep the soda can upright for the remainder of the extended grasping phase.
-                    [Insert figure]
+                    \item An End-Effector Axis Alignment task map aligns the HSR gripper with the axis of the cylindrical soda can so the gripper stays around the soda can while the fingers of the gripper close. It also prevents the HSR from inverting the soda can. This Axis Alignment task begins at \(t_{grasp\ start}\) and remains active to keep the soda can upright for the remainder of the extended grasping phase.
 
                     \item A Point to Plane task map named 'Lift Off Table' keeps the end effector a set distance above the plane of the table to avoid the arm and gripper colliding with the table. This task map is active momentarily before \({grasp\ window}\) and momentarily after \({grasp\ window}\) to position the gripper above the table when transitioning from sub-reach to sub-grasp and from sub-grasp to sub-leave, such that the gripper clears the end of the table when lowering the starting arm configuration. This task map results in a swooping motion of the gripper during the sub-grasping phase. This Lift-Off Table task map takes the place of collision checking the trajectory by creating a trajectory that likely does not collide.
+                    \item 
+                    \item A Base Orientation task map ensures that the HSR omnibase roatation at the end of the grasping segment matches a given value. For the purpose of testing, zero rotation at the end of the trajectory is desired.
                 \end{itemize}
             \subsubsection{Commentary on Task Map Weights}
-                [create a diagram of extended grasping phase and when constraints are active.]
+                The costs of the taskmaps shown in \cref{fig:taskmap} were tuned by hand for the given scenario. Base position and end-effector position have the highest associated cost of 1e4, since the actions associated with taskmaps are the most important to the drive-by pick-and-place problem. The base position taskmap makes the HSR follow the given trajectory and the end-effector position taskmap brings the gripper to the soda can object. The End-Effector Axis-Alignment map results in a sub-grasping phase where the gripper is oriented such that the fingers are around the soda can to grip it around the circumference. The Joint Limit and Lift-Off Table lead to valid trajectories that do not exceed positional hardware limitations of the HSR and do not collide with the table obstacle. The base orientation results in a smooth transition to the placing segment.
         \subsection{HSR Controller}
             The AICO solver outputs a trajectory with position waypoints equally spaced in time. The trajectory is specified through a joint trajectory controller in ROS and sent to the HSR. According to the ROS wiki documentation for the joint trajectory controller, a trajectory composed solely of position waypoints is linearly interpolated and results in a trajectory with discontinuous velocities at the waypoints. 
-            \par Taking the difference in positions and dividing by the time step produces an array of desired velocities at each waypoint. This results in a cubic spline that ensures continuity at the velocity level.
-            [Include a bit about simple action client and how trajectories get passed to HSR]
+            \par Taking the difference in positions and dividing by the time step produces an array of desired velocities at each waypoint. This results in a spline interpolation that ensures continuity at the velocity level. 
+
+            \par The trajectory is sent separately to the HSR omnibase and arm controllers. A command is sent to the gripper controller to close the gripper at the start of the sub-grasping phase. The ROS actionlib package was used to create omnibase and arm action clients to pass the trajectory to the HSR action server. The HSR python interface was used to send the close gripper command.
+
         \subsection{Procedure}
             \subsubsection{Hardware and Simulation Specifications}
-                drive-by pick-and-place motions are run on an HSR simulated in Gazebo. [Computer specs like in ***].
+                The drive-by pick-and-place motions were run on an HSR simulated in Gazebo. Simulations were performed in Ubuntu Linux LTS 16.04 with ROS Kinetic, on an Intel Xenon E-2286M 2.5-4.0 GHz CPU with 32GB 2666MHz RAM.
                 
             \subsubsection{Grasping Phase}
-                The drive-by base trajectory was defined in the planning scene as a 1.4-meter path parallel to the edge of the table with a duration of 10 seconds and a distance from the edge of the table of 0.35 meters. This trajectory was defined by two waypoints and results in a linear base trajectory that runs parallel to the Nyboda table. [Insert figure of a top-down view of setup in notes]. Since the task maps passed to the AICO solver do not depend on time, the 10-second duration can be scaled in time by increasing or reducing the time step between trajectory waypoints of the solved trajectory.
-                \par Due to limitations in the reachability of the HSR arm, the target object was placed near the edge of the table to minimize the likelihood of collision with the table. [Section Reference] further details the relationship between table height and bottle distance from table edge for the HSR.
+                The drive-by base trajectory was defined in the planning scene as a 1.4-meter path parallel to the edge of the table with a duration of 10 seconds and a distance from the edge of the table of 0.35 meters. This trajectory was defined by two waypoints and results in a linear base trajectory that runs parallel to the Nyboda table. [Insert figure of a top-down view of setup in notes]. Since the task maps passed to the AICO solver do not depend on time, the 10-second duration (\cref{fig:taskmap}) can be scaled in time by increasing or reducing the time step between trajectory waypoints of the solved trajectory.
+
+                \par Due to limitations in the reachability of the HSR arm, the target object was placed near the edge of the table to minimize the likelihood of collision with the table.
 
             \subsubsection{Object Detection}
                 Visual markers are used as a fiducial to accurately acquire the position of the table and soda can using computer vision.
                 The HSR includes AR marker detection which uses the depth sensor as well as the stereoscopic camera to determine the position of a defined object. However, AprilTags were used instead since AprilTags were found to permit tag detection from a longer range compared to AR markers. \cite{wang_apriltag_2016}.. 
 
                 \par Once the frames of both the table and soda can were determined, a series of transforms using Kinematics and Dynamics Library (KDL)\cite{noauthor_kinematics_nodate} wrapped in EXOTica produced the absolute position and orientation of the table as well as the position of the bottle in the frame of the table.[references] Since the position of the soda can with respect to the table's frame is known, the planning scene utilized in the test example can be used to compute the extended grasping trajectory.
-                 The absolute position of the table allows the HSR motion planner to reach the start of the extended grasping phase, which is defined in the frame of the table. [Insert Image of tf's in rviz]
+                The absolute position of the table allows the HSR motion planner to reach the start of the extended grasping phase, which is defined in the frame of the table. [Insert Image of tf's in rviz]
                 % \begin{figure}[ht][ht]
                 %     \centering
                 %     \begin{minipage}[b]{0.45\linewidth}
@@ -672,7 +698,11 @@
 
         \par This project only plans for grasping a soda can. The HSR gripper is capable of grasping larger objects, so gripping duration and the distance to separate gripper fingers should also be parameters for the algorithm to determine.
 
+        \par The soda can was placed near the edge of the table since the HSR has poor reachability. Further work on adjusting the height of the table and the distance from the edge of the table to place the soda can is recommended to aid in identifying valid grasping scenarios.
+
         \par Using fiducial markers allows objects to be easily identified using computer vision. The HSR has an Nvidia Jetson TK1 installed as an auxiliary computer to enable GPU computing. This allows the HSR to perform objection recognition using neural networks with algorithms such as YOLO. Running YOLO and training new models on the HSR is outlined in the HSR documentation. \cite{noauthor_hsrb_manual_nodate}.
+
+        \par The HSR is asymetrical, with the arm flex joint left of the centerline of the torso (\cref{fig:arm-flex-joint}), so the grasping motion differs depending on which side of the HSR the soda can located. For this project, trajectories were analyzed for a scenario where HSR drove by a table such that the table and soda can were located on the right side of the HSR. It may be necessary to define a new set of taskmap costs and activation timings for the case where the soda can is on the left side of the HSR during a drive-by base trajectory. Different distances between the HSR and the table may be tested, for target objects on both sides, to determine the optimal distances at which to perform the grasping task. It may be of interest to investigate the possibility of rotating the HSR base 180 degrees when the soda can is on the left side and driving the HSR omnibase backwards along the base trajectory. Then, the soda can can be positioned on the right side of the HSR for any given drive-by base trajectory.
 
         \par This project plans motion in a static environment. However, EXOTica allows for planning in a dynamic environment as demonstrated in \cite{yang_planning_2018}. Extending the method to a time-varying environment would increase the HSR's utility as a service robot for human interaction in real-world scenarios.
 
@@ -691,6 +721,9 @@
 \iffalse TEXT \cite{lavalle_rapidly-exploring_1998} \fi
 \section{Bibliography}
     \bibliography{references}
+\section{Appendix}
+    \subsection{Risk Assessment}
+        \includepdf[pages={1,2}]{RiskAssessmentSigned_all}
     
 \end{document}
     % \begin{itemize}

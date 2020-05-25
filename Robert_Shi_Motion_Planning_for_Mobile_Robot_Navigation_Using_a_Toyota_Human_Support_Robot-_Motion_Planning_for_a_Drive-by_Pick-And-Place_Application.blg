@@ -1,0 +1,54 @@
+This is BibTeX, Version 0.99d (TeX Live 2018)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: Robert_Shi_Motion_Planning_for_Mobile_Robot_Navigation_Using_a_Toyota_Human_Support_Robot-_Motion_Planning_for_a_Drive-by_Pick-And-Place_Application.aux
+The style file: ieeetr.bst
+Database file #1: References.bib
+Warning--empty author in noauthor_robocuphome_2020
+Warning--empty journal in noauthor_robocuphome_2020
+Warning--empty author and editor in noauthor_hsrb_manual_nodate
+Warning--empty year in noauthor_hsrb_manual_nodate
+Warning--empty institution in lavalle_rapidly-exploring_1998
+Warning--empty journal in minka_expectation_nodate
+Warning--empty year in minka_expectation_nodate
+You've used 22 entries,
+            1876 wiz_defined-function locations,
+            601 strings with 8274 characters,
+and the built_in function-call counts, 6132 in all, are:
+= -- 590
+> -- 216
+< -- 0
++ -- 82
+- -- 60
+* -- 451
+:= -- 816
+add.period$ -- 26
+call.type$ -- 22
+change.case$ -- 21
+chr.to.int$ -- 0
+cite$ -- 29
+duplicate$ -- 315
+empty$ -- 629
+format.name$ -- 60
+if$ -- 1500
+int.to.chr$ -- 0
+int.to.str$ -- 22
+missing$ -- 18
+newline$ -- 75
+num.names$ -- 21
+pop$ -- 111
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 226
+stack$ -- 0
+substring$ -- 423
+swap$ -- 117
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 7
+while$ -- 59
+width$ -- 24
+write$ -- 211
+(There were 7 warnings)
